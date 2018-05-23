@@ -2,16 +2,12 @@ import reduxCatch from 'redux-catch';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 
-import epic from './epics';
+import rootEpic from './epics';
 import rootReducer from './reducers';
 import todoServices from './services/todoServices';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const epicMiddleware = createEpicMiddleware(epic, {
-    dependencies: {
-        todoServices
-    },
-  });
+const epicMiddleware = createEpicMiddleware(rootEpic);
   
 // const errorHandler = (err, getState, lastAction) => {
 //     if (process.env.NODE_ENV === 'development') {
@@ -24,10 +20,10 @@ const epicMiddleware = createEpicMiddleware(epic, {
 const store = createStore(
     rootReducer, 
     composeWithDevTools(
-        // applyMiddleware(
-            // reduxCatch(errorHandler).
-            // epicMiddleware
-        // )
+        applyMiddleware(
+            // reduxCatch(errorHandler),
+            epicMiddleware
+        )
     )
 );
 

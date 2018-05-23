@@ -5,13 +5,10 @@ import { combineEpics } from 'redux-observable';
 import * as todoActions from '../actions/todoActions';
 import todoService from '../services/todoServices';
 
-export const addTodoEpic = (action$, store, { todoServices }) => 
+export const addTodoEpic = (action$, store) => 
     action$
         .ofType(todoActions.TODO_ADD)
-        .mergeMap(() => 
-            todoService.saveTodo()
-            .mergeMap(() => Observable.of('noop'))
-        )
+        .mergeMap(() => Observable.of('noop'))
 
 // const changeSelectedDateEpic = action$ =>
 //   action$
