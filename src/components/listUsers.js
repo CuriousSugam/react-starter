@@ -4,9 +4,17 @@ import { connect } from 'react-redux';
 import * as currentUserActions from '../actions/currentUserActions';
 
 const ListUsers = ({ users, onClick }) => (
-  <ul>
+  <ul style={{
+    listStyle: 'none',
+    paddingLeft: 0,
+  }}>
     {
-      users.map((user, i) => <li key={i} onClick={() => onClick(user.id)}>{user.username}</li>)
+      users.map((user, i) => <li  style={{
+        border: '1px solid #eee',
+        borderRadius: '3px',
+        padding: '8px 12px',
+        cursor: 'pointer',
+      }} key={i} onClick={() => onClick(user.id)}>{user.username}</li>)
     }
   </ul>
 );

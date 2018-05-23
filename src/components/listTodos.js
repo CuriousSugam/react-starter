@@ -10,7 +10,7 @@ const ListTodos = ({ todos, onClick }) => (
 );
 
 export default connect(
-  ({ todo }) => ({
-    todos: Object.values(todo).map(i => i.todo)
+  ({ todo, currentUser }) => ({
+    todos: Object.values(todo).filter(i => i.userId === currentUser).map(i => i.todo)
   })
 )(ListTodos);
