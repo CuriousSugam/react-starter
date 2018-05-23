@@ -2,9 +2,12 @@ export const TODO_ADD = 'TODO_ADD';
 export const TODO_REMOVE = 'TODO_REMOVE';
 export const TODO_EDIT = 'TODO_EDIT';
 
-export const addTodo = todo => ({
+export const addTodo = (todo, userId) => ({
     type: TODO_ADD,
-    payload: todo
+    payload: {
+      todo,
+      userId,
+    }
 });
 
 export const removeTodo = todo => ({
