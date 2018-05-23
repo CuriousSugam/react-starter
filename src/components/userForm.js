@@ -19,9 +19,10 @@ export default compose(
   })),
   withState('username', 'updateUsername', ''),
   withHandlers({
-    onClick: ({ username, addUserToApp }) => e => {
+    onClick: ({ username, addUserToApp, updateUsername }) => e => {
       e.preventDefault();
       addUserToApp(username);
+      updateUsername('');
     },
     onChange: ({ updateUsername }) => event => {
       updateUsername(event.target.value);
